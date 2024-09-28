@@ -12,7 +12,7 @@ import java.net.URL;
 public class TenorGifApi {
 
     public static String searchGif(String search) {
-        String apiKey = "AIzaSyCvted_K1xLZv42adPZC9hVI6zL9M86j2s";
+        String apiKey = System.getenv("TENOR_TOKEN");
         String urlString = "https://tenor.googleapis.com/v2/search?q=" + search + "&key=" + apiKey + "&limit=1&random=true&media_filter=gif";
         try {
             URL url = new URL(urlString);

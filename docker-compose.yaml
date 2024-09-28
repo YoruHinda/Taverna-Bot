@@ -10,3 +10,9 @@ services:
     restart: always
     depends_on:
       - db
+    environment:
+      DATABASE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE}
+      DATABASE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      DATABASE_USER: ${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - .env
