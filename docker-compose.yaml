@@ -1,0 +1,12 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: taverna
+      MYSQL_ROOT_PASSWORD: root
+  taverna:
+    build: .
+    restart: always
+    depends_on:
+      - db

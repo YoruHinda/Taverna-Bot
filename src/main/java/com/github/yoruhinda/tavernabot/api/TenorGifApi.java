@@ -1,6 +1,5 @@
 package com.github.yoruhinda.tavernabot.api;
 
-import com.github.yoruhinda.tavernabot.utils.Config;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,7 +12,7 @@ import java.net.URL;
 public class TenorGifApi {
 
     public static String searchGif(String search) {
-        String apiKey = Config.tenorGifApiKey;
+        String apiKey = "AIzaSyCvted_K1xLZv42adPZC9hVI6zL9M86j2s";
         String urlString = "https://tenor.googleapis.com/v2/search?q=" + search + "&key=" + apiKey + "&limit=1&random=true&media_filter=gif";
         try {
             URL url = new URL(urlString);
