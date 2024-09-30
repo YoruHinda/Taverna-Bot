@@ -1,5 +1,6 @@
 package com.github.yoruhinda.tavernabot.commands;
 
+import com.github.yoruhinda.tavernabot.api.TenorGifApi;
 import com.github.yoruhinda.tavernabot.model.Drink;
 import com.github.yoruhinda.tavernabot.services.DrinkService;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -24,6 +25,7 @@ public class DeleteDrinkCommand extends ListenerAdapter {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setColor(Color.PINK);
                     embed.setTitle(event.getOption("drinkname").getAsString() + ", Este drink não existe.");
+                    embed.setImage(TenorGifApi.searchGif("animemaidangry"));
                     event.replyEmbeds(embed.build()).queue();
                     return;
                 }
@@ -31,12 +33,14 @@ public class DeleteDrinkCommand extends ListenerAdapter {
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setColor(Color.PINK);
                 embed.setTitle(drink.getDrink_Name() + ", Foi Removido!");
+                embed.setImage(TenorGifApi.searchGif("animemaid"));
                 event.replyEmbeds(embed.build()).queue();
                 return;
             }
             EmbedBuilder embed = new EmbedBuilder();
             embed.setColor(Color.PINK);
             embed.setTitle("Insira o nome da bebida que deseja remover!");
+            embed.setImage(TenorGifApi.searchGif("animemaidangry"));
             event.replyEmbeds(embed.build()).queue();
         }
     }
