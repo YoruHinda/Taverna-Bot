@@ -19,12 +19,12 @@ public class DeleteDrinkCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equalsIgnoreCase("remover")) {
-            if(event.getOption("drinkname") != null){
-                Drink drink = drinkService.getDrinkByName(event.getOption("drinkname").getAsString());
+            if(event.getOption("bebida") != null){
+                Drink drink = drinkService.getDrinkByName(event.getOption("bebida").getAsString());
                 if (drink == null) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setColor(Color.PINK);
-                    embed.setTitle(event.getOption("drinkname").getAsString() + ", Este drink não existe.");
+                    embed.setTitle(event.getOption("bebida").getAsString() + ", Este drink não existe.");
                     embed.setImage(TenorGifApi.searchGif("animemaidangry"));
                     event.replyEmbeds(embed.build()).queue();
                     return;

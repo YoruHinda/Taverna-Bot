@@ -38,9 +38,9 @@ public class Bot {
                 .addOption(OptionType.STRING, "bebida", "Qual bebida?")
                 .addOption(OptionType.MENTIONABLE, "cliente", "Cliente a servir!"),
                 Commands.slash("pedir", "Pedir Bebida ao bartender!").addOption(OptionType.STRING, "bebida", "Qual bebida?"),
-                Commands.slash("adicionar", "Adiciona a bebida ao cardapio").addOption(OptionType.STRING, "drinkname", "Nome da bebida para adicionar!"),
-                Commands.slash("menu", "Cardapio/Menu"),
-                Commands.slash("remover", "Remove a bebida do cardapio").addOption(OptionType.STRING, "drinkname", "Nome da bebida para remover!")
+                Commands.slash("adicionar", "Adiciona a bebida ao cardapio").addOption(OptionType.STRING, "bebida", "Nome da bebida para adicionar!"),
+                Commands.slash("remover", "Remove a bebida do cardapio").addOption(OptionType.STRING, "bebida", "Nome da bebida para remover!"),
+                Commands.slash("menu", "Cardapio/Menu")
         ).queue();
     }
 }

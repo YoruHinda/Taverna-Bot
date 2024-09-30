@@ -17,10 +17,10 @@ public class CreateDrinkCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if(event.getName().equalsIgnoreCase("adicionar")){
-            if(event.getOption("drinkname") != null){
-                if(drinkService.getDrinkByName(event.getOption("drinkname").getAsString()) == null){
+            if(event.getOption("bebida") != null){
+                if(drinkService.getDrinkByName(event.getOption("bebida").getAsString()) == null){
                     EmbedBuilder embed = new EmbedBuilder();
-                    Drink drink = new Drink(event.getOption("drinkname").getAsString());
+                    Drink drink = new Drink(event.getOption("bebida").getAsString());
                     drinkService.saveDrink(drink);
                     embed.setColor(Color.PINK);
                     embed.setTitle(drink.getDrink_Name() + ", Foi adicionado ao cardapio!!");
@@ -30,7 +30,7 @@ public class CreateDrinkCommand extends ListenerAdapter {
                 }
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setColor(Color.PINK);
-                embed.setTitle(event.getOption("drinkname").getAsString() + ", Esta bebida ja existe!");
+                embed.setTitle(event.getOption("bebida").getAsString() + ", Esta bebida ja existe!");
                 embed.setImage(TenorGifApi.searchGif("animemaidangry"));
                 event.replyEmbeds(embed.build()).queue();
                 return;
