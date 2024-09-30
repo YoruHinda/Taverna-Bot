@@ -5,14 +5,20 @@ services:
     environment:
       MYSQL_DATABASE: taverna
       MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "-uroot", "-proot",  "ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 20s
+      retries: 10
   taverna:
     build: .
     restart: always
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      DATABASE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE}
-      DATABASE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      DATABASE_USER: ${MYSQL_ROOT_PASSWORD}
+      DATABASE_URL: jdbc:mysql://db:3306/taverna
+      DATABASE_PASSWORD: root
+      DATABASE_USER: root
     env_file:
       - .env

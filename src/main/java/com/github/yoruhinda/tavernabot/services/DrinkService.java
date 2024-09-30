@@ -17,7 +17,7 @@ public class DrinkService {
 
     public void createDrinkTable(){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE drink(id int NOT NUL AUTO INCREMENT, drink_name varchar(30));");
+            PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE Drink(id int NOT NULL AUTO_INCREMENT, drink_name varchar(30) NOT NULL, PRIMARY KEY (id));");
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -26,7 +26,7 @@ public class DrinkService {
 
     public void saveDrink(Drink drink) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO drink (drink_name) VALUES (?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Drink (drink_name) VALUES (?);");
             preparedStatement.setString(1, drink.getDrink_Name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -36,7 +36,7 @@ public class DrinkService {
 
     public void deleteDrink(int id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM drink WHERE id = ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Drink WHERE id = ?;");
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -47,7 +47,7 @@ public class DrinkService {
     public List<Drink> getAllDrinks() {
         try {
             List<Drink> drinks = new ArrayList<>();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM drink;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Drink;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Drink drink = new Drink(resultSet.getInt("id"), resultSet.getString("drink_name"));
@@ -61,12 +61,15 @@ public class DrinkService {
 
     public Drink getDrinkByName(String drink_name) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM drink WHERE drink_name = ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Drink WHERE drink_name = ?;");
             preparedStatement.setString(1, drink_name);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return new Drink(resultSet.getInt("id"), resultSet.getString("drink_name"));
+            while (resultSet.next()){
+                return new Drink(resultSet.getInt("id"), resultSet.getString("drink_name"));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 }

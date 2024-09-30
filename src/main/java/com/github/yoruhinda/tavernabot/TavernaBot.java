@@ -1,6 +1,8 @@
 package com.github.yoruhinda.tavernabot;
 
-import java.sql.SQLException;
+import com.github.yoruhinda.tavernabot.connection.DatabaseConnection;
+
+import java.sql.Connection;
 
 public class TavernaBot {
     public static void main(String[] args) {
@@ -12,7 +14,8 @@ public class TavernaBot {
     }
 
     private static void initializeBot() throws InterruptedException {
-        Bot bot = new Bot();
+        Connection connection = DatabaseConnection.createConnection();
+        Bot bot = new Bot(connection);
         bot.launcher();
     }
 }

@@ -11,8 +11,9 @@ public class DatabaseConnection {
         String password = System.getenv("DATABASE_PASSWORD");
         String user = System.getenv("DATABASE_USER");
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(url, password, user);
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
