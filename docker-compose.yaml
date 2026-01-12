@@ -6,10 +6,10 @@ services:
       MYSQL_DATABASE: taverna
       MYSQL_ROOT_PASSWORD: root
     healthcheck:
-      test: [ "CMD", "mysqladmin", "-uroot", "-proot",  "ping", "-h", "localhost" ]
-      interval: 30s
-      timeout: 20s
-      retries: 10
+     test: [ "CMD", "mysqladmin", "-uroot", "-proot",  "ping", "-h", "localhost" ]
+     interval: 30s
+     timeout: 20s
+     retries: 10
   taverna:
     build: .
     restart: always
